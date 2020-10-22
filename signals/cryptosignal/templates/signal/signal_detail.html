@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>product detail</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div>
+    <p>
+        {{objects.SymbolTitle }}
+        <br>{{objects.NowPrice }}
+        <br>{{objects.TimeFrame }}
+        <br>{{objects.TriggerPrice }}
+        <br>{{objects.StopLoss }}
+        <br>{{objects.TakeProfit1 }}
+        <br>{{objects.TakeProfit2 }}
+        <br>{{objects.TakeProfit3 }}
+        <br>{{objects.TakeProfit4 }}
+        <br>{{objects.CreatedDate }}
+        <br>{{objects.updatedDate }}
+        <br>{{objects.Publisher }}
+        <br>{{objects.Images }}
+    </p>
+</div>
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+    <div id="tradingview_45881"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+    new TradingView.widget(
+    {
+    "width": 980,
+    "height": 610,
+    "symbol": "NASDAQ:AAPL",
+    "interval": "D",
+    "timezone": "Etc/UTC",
+    "theme": "dark",
+    "style": "1",
+    "locale": "en",
+    "toolbar_bg": "#f1f3f6",
+    "enable_publishing": true,
+    "withdateranges": true,
+    "hide_side_toolbar": false,
+    "allow_symbol_change": true,
+    "details": true,
+    "studies": [
+      "CCI@tv-basicstudies",
+      "DoubleEMA@tv-basicstudies",
+      "IchimokuCloud@tv-basicstudies",
+      "MACD@tv-basicstudies"
+    ],
+    "container_id": "tradingview_45881"
+  }
+    );
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+</body>
+</html>
