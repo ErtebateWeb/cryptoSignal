@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
+import telegram_Api
 
 
 
@@ -35,7 +36,58 @@ class binarysignal(models.Model):
     Publisher = models.CharField(max_length=30,choices=Publishers)
     Images = models.ImageField(default='', upload_to='images/', null=True,blank=True)
     #Images = models.FileField(default='', upload_to='/images/', null=True,blank=True)
+    TelegramMessageId = models.CharField(max_length=30, default='',null=True,blank=True)
 
+
+
+    def save(self , *args , **kwargs):
+        # self.timestamp = datetime.fromtimestamp(self.date)
+        print('send Telegram')
+
+
+        picpath = self.Images
+        picpath = str(picpath)
+
+        TF =self.TimeFrame
+        NP =self.NowPrice
+        Tr =self.TriggerPrice
+        SL =self.StopLoss
+        ST =self.SymbolTitle
+        TP1 =self.TakeProfit1
+        TP2 =self.TakeProfit2
+        TP3 =self.TakeProfit3
+        TP4 =self.TakeProfit4
+        # Pub =self.Publisher
+        message = "💰 : {}\n\n⏳ TF: {}\n\n💵 NP: {}\n\n🔫 Tr : {}\n\n⛔️ SL : {}\n\n✅ Tp1 : {}   🧮 {}\n\n✅ Tp2 : {}   🧮 {}\n\n✅ Tp3 : {}   🧮 {}\n\n✅ Tp4 : {}   🧮 {}".format(
+            ST, TF, NP, Tr, SL, TP1, None, TP2, None, TP3, None, TP4, None)
+
+        res = telegram_Api.sendp(chat_id='@crypto_monarch', photo=open('images\images\\' + picpath, 'rb'),
+                                 caption=message)
+                                 # caption=message,rep='81')
+        print('Telegram result=', res.message_id)
+        self.TelegramMessageId = res.message_id
+
+
+
+
+
+
+
+
+
+
+
+        # ts=int(datetime.timestamp(self.date)*1000)
+        # print('ts =',ts)
+        # print('ts type=',type(ts))
+        # self.timestamp = ts
+        # # self.text = ts
+        # # ts=int(datetime.datetime.timestamp(self.date))
+        # # print('ts=',ts)
+        # print(self.timestamp)
+        print ('SAVE!!!')
+
+        super(binarysignal,self).save(*args,**kwargs)
     def __str__(self):
             return str(self.SymbolTitle)
 

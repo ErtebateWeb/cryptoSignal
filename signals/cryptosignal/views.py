@@ -59,23 +59,27 @@ def submit_signals(request):
         return HttpResponseRedirect('/login')
     form = SignalForm(request.POST or None,request.FILES or None)
     if form.is_valid():
-        print(form.cleaned_data)
-        picpath = form.cleaned_data.get("Images")
-        picpath = str(picpath)
-
-        ST = form.cleaned_data.get("SymbolTitle")
-        TF = form.cleaned_data.get("TimeFrame")
-        NP = form.cleaned_data.get("NowPrice")
-        Tr = form.cleaned_data.get("TriggerPrice")
-        SL = form.cleaned_data.get("StopLoss")
-        TP1 = form.cleaned_data.get("TakeProfit1")
-        TP2 = form.cleaned_data.get("TakeProfit2")
-        TP3 = form.cleaned_data.get("TakeProfit3")
-        TP4 = form.cleaned_data.get("TakeProfit4")
-        Pub = form.cleaned_data.get("Publisher")
-        message= "💰 : {}\n⏳ TF: {}\n💵 NP: {}\n🔫 Tr : {}\n⛔️ SL : {}\n✅ Tp1 : {}   🧮 {}\n✅ Tp2 : {}   🧮 {}\n✅ Tp3 : {}   🧮 {}\n✅ Tp4 : {}   🧮 {}\nPublisher:@{}".format(ST,TF,NP,Tr,SL,TP1,None,TP2,None,TP3,None,TP4,None,Pub)
+        # print(form.cleaned_data)
+        # picpath = form.cleaned_data.get("Images")
+        # picpath = str(picpath)
+        #
+        # ST = form.cleaned_data.get("SymbolTitle")
+        # TF = form.cleaned_data.get("TimeFrame")
+        # NP = form.cleaned_data.get("NowPrice")
+        # Tr = form.cleaned_data.get("TriggerPrice")
+        # SL = form.cleaned_data.get("StopLoss")
+        # TP1 = form.cleaned_data.get("TakeProfit1")
+        # TP2 = form.cleaned_data.get("TakeProfit2")
+        # TP3 = form.cleaned_data.get("TakeProfit3")
+        # TP4 = form.cleaned_data.get("TakeProfit4")
+        # Pub = form.cleaned_data.get("Publisher")
+        # message = "💰 : {}\n⏳ TF: {}\n💵 NP: {}\n🔫 Tr : {}\n⛔️ SL : {}\n✅ Tp1 : {}   🧮 {}\n✅ Tp2 : {}   🧮 {}\n✅ Tp3 : {}   🧮 {}\n✅ Tp4 : {}   🧮 {}\nPublisher:@{}".format(
+        #     ST, TF, NP, Tr, SL, TP1, None, TP2, None, TP3, None, TP4, None, Pub)
+        #
+        # res = telegram_Api.sendp(chat_id='@crypto_monarch', photo=open('images\images\\' + picpath, 'rb'),
+        #                          caption=message)
+        # print('Telegram result=', res.message_id)
         form.save()
-        telegram_Api.sendp(chat_id='@crypto_monarch', photo=open('images\images\\' + picpath, 'rb'), caption=message)
         return redirect('/cryptosignal/')
 
     context = {
